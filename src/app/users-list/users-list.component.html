@@ -1,0 +1,17 @@
+<div class="container">
+    <table class="user-list">
+        <caption>
+            <button>Create User</button>
+        </caption>
+        <tr class="user-list__title-row">
+            <th *ngFor="let t of titles">{{t}}</th>
+        </tr>
+        <tr *ngFor="let u of users" class="user-list__values-row">
+            <td>{{u.username}}</td>
+            <td>{{u.first_name}}</td>
+            <td>{{u.last_name}}</td>
+            <td>{{u.email}}</td>
+            <td>{{u.user_type}}</td>
+        </tr>
+    </table>
+</div>
