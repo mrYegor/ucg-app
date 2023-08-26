@@ -1,0 +1,111 @@
+$font-name: Helvetica, sans-serif;
+
+@mixin hover-btn {
+    transition: background-color linear 250ms;
+}
+
+@mixin clear {
+    margin: 0;
+    padding: 0;
+}
+
+@mixin flex-align {
+    display: flex;
+    align-items: center;
+}
+
+.container {
+    margin-top: 62px;
+    background-color: #fff;
+    padding: 32px 26px 26px;
+    border-radius: 6px;
+    font-family: $font-name;
+
+    legend {
+        @include clear;
+        @include flex-align;
+        justify-content: space-between;
+        margin-bottom: 26px;
+
+        fieldset {
+            @include clear;
+            border: none;
+            color: #3f4254;
+            font-size: 16px;
+            font-weight: 900;
+        }
+
+        .close {
+            @include flex-align;
+            @include hover-btn;
+            justify-content: center;
+            height: 24px;
+            width: 24px;
+            color: #a4a4b5;
+            font-size: 34px;
+
+            &:hover {
+                cursor: pointer;
+                color: #95959c;
+            }
+        }
+    }
+
+    .form-control {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        margin-top: 14px;
+
+        label {
+            font-size: 13px;
+            color: #3f4254;
+            margin-bottom: 4px;
+
+            &::after {
+                content: '*'
+            }
+        }
+
+        input {
+            height: 26px;
+            width: 95%;
+            border-radius: 6px;
+            border: none;
+            padding: 10px;
+            background-color: #f3f6f9;
+            color: #3f4254;
+            outline: none;
+        }
+
+        select {
+            border: 0;
+            outline: 0;
+            width: 100%;
+            height: 3.5em;
+            padding: 10px;
+            color: #3f4254;
+            border-radius: 0.25em;
+            background-color: #f3f6f9;
+            cursor: pointer;
+            position: relative;
+
+            option {
+                color: inherit;
+                background-color: #f3f6f9;
+                font-size: 13px;
+                cursor: pointer;
+            }
+
+            & {
+                &:focus {
+                    outline: none;
+                }
+
+                &::-ms-expand {
+                    display: none;
+                }
+            }
+        }
+    }
+}

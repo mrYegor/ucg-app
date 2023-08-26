@@ -1,3 +1,5 @@
+$container-height: 710px;
+
 .users-page {
     display: flex;
     flex-direction: row;
@@ -10,11 +12,12 @@
 
     .users-list {
         width: 65%;
-        height: 100%;
+        height: $container-height;
+        overflow-y: auto;
     }
 
     .user-form {
-        width: 30%;
-        height: 100%;
+        width: 33%;
+        height: $container-height;
     }
 }

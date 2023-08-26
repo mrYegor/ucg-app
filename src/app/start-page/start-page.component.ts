@@ -26,4 +26,8 @@ export class StartPageComponent {
     this.userAction = event;
     this.isFormVisible = true;
   }
+
+  toggleFormView(event: boolean) {
+    this.isFormVisible = event;
+  }
 }

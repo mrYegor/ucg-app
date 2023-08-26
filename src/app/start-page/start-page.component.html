@@ -8,5 +8,7 @@
         *ngIf="isFormVisible"
         class="user-form"
         [currentUserAction]="userAction"
+        [isFormVisisble]="isFormVisible"
+        (onChangeVisisbility)="toggleFormView($event)"
     ></app-user-form>
 </div>

@@ -1,37 +1,53 @@
 <div class="container">
     <form>
+        <legend>
+            <fieldset *ngIf="currentUserAction.action === 'create'; else UpdateBlock">
+                Create new user
+            </fieldset>
+            <ng-template #UpdateBlock>
+                <fieldset>
+                    {{currentUserAction.user.first_name}} {{currentUserAction.user.last_name}}
+                </fieldset>
+            </ng-template>
+            <span class="close" (click)="onClose()">&times;</span>
+        </legend>
         <div class="form-control">
             <label>Username</label>
-            <input type="text" placeholder="Username">
+            <input type="text">
             <div class="validation"></div>
         </div>
         <div class="form-control">
             <label>First name</label>
-            <input type="text" placeholder="First name">
+            <input type="text">
             <div class="validation"></div>
         </div>
         <div class="form-control">
             <label>Last name</label>
-            <input type="text" placeholder="Last name">
+            <input type="text">
             <div class="validation"></div>
         </div>
         <div class="form-control">
             <label>Email</label>
-            <input type="text" placeholder="Email">
-
-            <div class="validation"></div>
-        </div>
-        <div class="form-control">
-            <label>Password</label>
-            <input type="password" placeholder="Password">
+            <input type="text">
             <div class="validation"></div>
         </div>
         <div class="form-control">
             <label>Role</label>
             <select>
+                <option selected value="0"></option>
                 <option value="Admin">Admin</option>
                 <option value="Driver">Driver</option>
-            </select>
+              </select>
+            <div class="validation"></div>
+        </div>
+        <div class="form-control">
+            <label>Password</label>
+            <input type="password" >
+            <div class="validation"></div>
+        </div>
+        <div class="form-control">
+            <label>Repeat password</label>
+            <input type="password">
             <div class="validation"></div>
         </div>
         <app-action-buttons [currentAction]="currentUserAction" ></app-action-buttons> 

@@ -1,10 +1,12 @@
+$font-name: Helvetica, sans-serif;
+
 @mixin cell-sizing {
     padding: 22px 26px 21px;
     box-sizing: border-box;
     font-size: 13px;
     text-align: left;
     width: 20%;
-    font-family: Helvetica, sans-serif;
+    font-family: $font-name;
 }
 
 @mixin hover-btn {
@@ -13,38 +15,40 @@
 
 .container {
     height: 100%;
+    border-radius: 6px;
+
+    .users-list__create-wrapper {
+        text-align: -webkit-right;
+
+        .users-list__create-user {
+            @include hover-btn;
+            width: 120px;
+            height: 46px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            background-color: #2e8ff0;
+            box-shadow: 0px 5px 8px #2E8FF029;
+            border-radius: 6px;
+            border: none;
+            margin-bottom: 16px;
+            font-size: 14px;
+            font-family: $font-name;
+            cursor: pointer;
+
+            &:hover {
+                cursor: pointer;
+                background-color: #2a84dd;
+            }
+        }
+    }
 
     .users-list__table {
         width: 100%;
         background-color: #f4f5f8;
         border-collapse: collapse;
-
-        caption {
-            text-align: -webkit-right;
-
-            .users-list__create-user {
-                @include hover-btn;
-                width: 120px;
-                height: 46px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                color: #fff;
-                background-color: #2e8ff0;
-                box-shadow: 0px 5px 8px #2E8FF029;
-                border-radius: 6px;
-                border: none;
-                margin-bottom: 16px;
-                font-size: 14px;
-                font-family: Helvetica, sans-serif;
-                cursor: pointer;
-
-                 &:hover{
-                    cursor: pointer;
-                    background-color: #2a84dd;
-                }
-            }
-        }
+        border-radius: 6px;
 
         .users-list__title-row {
             background-color: #fff;
@@ -54,6 +58,14 @@
             th {
                 @include cell-sizing;
                 font-weight: 900;
+
+                &:first-child {
+                    border-top-left-radius: 6px;
+                }
+
+                &:last-child {
+                    border-top-right-radius: 6px;
+                }
             }
         }
 
@@ -80,6 +92,8 @@
 
             td {
                 width: 100%;
+                border-bottom-left-radius: 6px;
+                border-bottom-right-radius: 6px;
             }
         }
 

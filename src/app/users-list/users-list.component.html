@@ -1,11 +1,12 @@
 <div class="container">
+    <div class="users-list__create-wrapper">
+        <button 
+            class="users-list__create-user"
+            (click)="createUser()"
+        >Create User</button>
+    </div>
     <table class="users-list__table">
-        <caption>
-            <button 
-                class="users-list__create-user"
-                (click)="createUser()"
-            >Create User</button>
-        </caption>
+
         <tr class="users-list__title-row">
             <th *ngFor="let t of titles">{{t}}</th>
         </tr>
