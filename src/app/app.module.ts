@@ -8,7 +8,8 @@ import { StartPageComponent } from './start-page/start-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserFormComponent } from './user-form/user-form.component';
 import { UsersListComponent } from './users-list/users-list.component';
-import { UserService } from './services/user.service'
+import { UserService } from './services/user.service';
+import { ActionButtonsComponent } from './user-form/action-buttons/action-buttons.component'
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { UserService } from './services/user.service'
     StartPageComponent,
     UserFormComponent,
     UsersListComponent,
+    ActionButtonsComponent,
   ],
   imports: [
     BrowserModule,

@@ -24,7 +24,6 @@
         <div class="form-control">
             <label>Password</label>
             <input type="password" placeholder="Password">
-
             <div class="validation"></div>
         </div>
         <div class="form-control">
@@ -35,6 +34,6 @@
             </select>
             <div class="validation"></div>
         </div>
-        <input type="submit" value="Sign In">
+        <app-action-buttons [currentAction]="currentUserAction" ></app-action-buttons> 
     </form>
 </div>

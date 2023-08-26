@@ -1,4 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { User, UserAction } from '../shared/users.interface';
+import { Actions } from './../shared/action.enums'
 
 @Component({
   selector: 'app-users-list',
@@ -6,16 +8,18 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./users-list.component.scss']
 })
 export class UsersListComponent implements OnInit {
-@Input() tableHeader: string[];
+  @Input() tableHeader: string[];
+  @Output() onCreateUser = new EventEmitter<UserAction>();
+  @Output() onViewUserData = new EventEmitter<UserAction>();
 
   ngOnInit() {}
 
   titles = [
     'username',
-    'first_name',
-    'last_name',
+    'first name',
+    'last name',
     'email',
-    'Admin'
+    'type'
   ]
   
   users = [
@@ -44,4 +48,22 @@ export class UsersListComponent implements OnInit {
       user_type: 'Admin'
     }
   ]
+
+  createUser() {
+    this.onCreateUser.emit(
+      {
+        user: {}, 
+        action: Actions.create_user
+      }
+    );
+  }
+
+  viewUserData(user: User) {
+    this.onViewUserData.emit(
+      {
+        user: user, 
+        action: Actions.view_user
+      }
+    );
+  }
 }

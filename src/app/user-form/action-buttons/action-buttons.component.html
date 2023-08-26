@@ -1,0 +1,15 @@
+<div [ngSwitch]="currentAction.action">
+    <div 
+        *ngSwitchCase="actions.create_user"
+        class="action-buttons"
+    >
+        <input type="submit" value="Create">
+    </div>
+    <div 
+        *ngSwitchCase="actions.view_user"
+        class="action-buttons"
+    >
+        <input type="button" value="Delete">
+        <input type="submit" value="Update">
+    </div>
+</div>

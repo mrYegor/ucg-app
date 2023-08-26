@@ -1,4 +1,12 @@
 <div class="users-page">
-    <app-users-list class="users-list"></app-users-list>
-    <app-user-form class="user-form"></app-user-form>
+    <app-users-list 
+        class="users-list"
+        (onCreateUser)="onCreate($event)"
+        (onViewUserData)="onView($event)"
+    ></app-users-list>
+    <app-user-form 
+        *ngIf="isFormVisible"
+        class="user-form"
+        [currentUserAction]="userAction"
+    ></app-user-form>
 </div>

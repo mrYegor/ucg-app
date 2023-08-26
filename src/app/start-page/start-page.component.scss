@@ -3,15 +3,18 @@
     flex-direction: row;
     flex-wrap: nowrap;
     align-items: start;
+    justify-content: space-between;
     height: 80vh;
     width: 95%;
-    margin: 10vh auto;
+    margin: 56px auto;
 
-    .users-list{
-        width: 70%;
+    .users-list {
+        width: 65%;
+        height: 100%;
     }
 
     .user-form {
         width: 30%;
+        height: 100%;
     }
 }

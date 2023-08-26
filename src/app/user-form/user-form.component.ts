@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { UserAction } from '../shared/users.interface';
 
 @Component({
   selector: 'app-user-form',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./user-form.component.scss']
 })
 export class UserFormComponent {
-
+  @Input() currentUserAction: UserAction;
 }
