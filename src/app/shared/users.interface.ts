@@ -7,10 +7,6 @@ export interface User {
     user_type?: string
 }
 
-export interface UsersList {
-    users: User[];
-}
-
 export interface UserAction {
     user: User;
     action: string;

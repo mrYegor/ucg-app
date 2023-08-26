@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { User, UserAction } from '../shared/users.interface';
-import { Actions } from './../shared/action.enums'
+import { Actions } from './../shared/action.enums';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-users-list',
@@ -8,11 +9,16 @@ import { Actions } from './../shared/action.enums'
   styleUrls: ['./users-list.component.scss']
 })
 export class UsersListComponent implements OnInit {
+  constructor(private userService: UserService) {}
+
   @Input() tableHeader: string[];
   @Output() onCreateUser = new EventEmitter<UserAction>();
   @Output() onViewUserData = new EventEmitter<UserAction>();
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.userService.addDummyUsers();
+    this.users = this.userService.getUsers()
+  }
 
   titles = [
     'username',
@@ -22,32 +28,7 @@ export class UsersListComponent implements OnInit {
     'type'
   ]
   
-  users = [
-    {
-      username: 'username',
-      first_name: 'first_name',
-      last_name: 'last_name',
-      email: 'email',
-      password: 'password',
-      user_type: 'Admin'
-    },
-    {
-      username: 'username1',
-      first_name: 'first_name',
-      last_name: 'last_name',
-      email: 'email',
-      password: 'password',
-      user_type: 'Admin'
-    },
-    {
-      username: 'username2',
-      first_name: 'first_name',
-      last_name: 'last_name',
-      email: 'email',
-      password: 'password',
-      user_type: 'Admin'
-    }
-  ]
+  users: User[];
 
   createUser() {
     this.onCreateUser.emit(
