@@ -111,13 +111,11 @@ export class UserFormComponent {
   }
 
   getUserData() {
-    if (this.currentUserAction.action === 'view') {
-      this.userService
+    this.userService
         .getUserByEmail(
-          this.currentUserAction.user.email!,
-          this.form
+          this.currentUserAction,
+          this.form,
         )
-    }
   }
 
   deleteUser() {

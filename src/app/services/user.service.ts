@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { User } from '../shared/users.interface';
+import { User, UserAction } from '../shared/users.interface';
 import { Actions } from '../shared/action.enums';
 
 @Injectable({
@@ -48,20 +48,36 @@ export class UserService {
     return JSON.parse(users!);
   }
 
-  public getUserByEmail(email: string, form: any): void {
+  public getUserByEmail(userAction: UserAction, form: any): void {
     const users = JSON.parse(localStorage.getItem(this.title)!);
+    const email = userAction.user.email;
+    const action = userAction.action;
 
     const selectedUser = users.find((u: User) => u.email === email);
 
-    form.patchValue({
-      username: selectedUser.username,
-      first_name: selectedUser.first_name,
-      last_name: selectedUser.last_name,
-      email: selectedUser.email,
-      password: selectedUser.password,
-      repeat_password: selectedUser.repeat_password,
-      user_type: selectedUser.user_type
-    })
+    if (action === Actions.view_user) {
+      form.patchValue({
+        username: selectedUser.username,
+        first_name: selectedUser.first_name,
+        last_name: selectedUser.last_name,
+        email: selectedUser.email,
+        password: selectedUser.password,
+        repeat_password: selectedUser.repeat_password,
+        user_type: selectedUser.user_type
+      })
+    } else if (action === Actions.create_user) {
+      form.patchValue({
+        username: '',
+        first_name: '',
+        last_name: '',
+        email: '',
+        password: '',
+        repeat_password: '',
+        user_type: ''
+      })
+    }
+
+    
   }
 
   //create-update
