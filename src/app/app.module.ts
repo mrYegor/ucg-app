@@ -9,7 +9,21 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserFormComponent } from './user-form/user-form.component';
 import { UsersListComponent } from './users-list/users-list.component';
 import { UserService } from './services/user.service';
-import { ActionButtonsComponent } from './user-form/action-buttons/action-buttons.component'
+import { FormControlValidationMsgDirective } from './directives/formcontrol-validation-msg.directive';
+import { FormSubmitValidationMsgDirective } from './directives/formsubmit-validation-msg.directive';
+import { ValidationMsgService } from './services/validation-msg.service';
+import { ToasterService } from './services/toaster.service';
+import { ToasterComponent } from './toaster/toast/toaster.component';
+import { ToasterContainerComponent } from './toaster/toaster-container.component';
+import { ForbiddenComponent } from './forbidden.component';
+import { NotFoundComponent } from './not-found.component';
+import { RouterModule, Routes } from '@angular/router';
+
+const appRoutes: Routes =[
+  { path: '', component: StartPageComponent},
+  { path: '403', component: ForbiddenComponent},
+  { path: '**', component: NotFoundComponent }
+];
 
 @NgModule({
   declarations: [
@@ -17,15 +31,25 @@ import { ActionButtonsComponent } from './user-form/action-buttons/action-button
     StartPageComponent,
     UserFormComponent,
     UsersListComponent,
-    ActionButtonsComponent,
+    FormControlValidationMsgDirective,
+    FormSubmitValidationMsgDirective,
+    ToasterComponent,
+    ToasterContainerComponent,
+    ForbiddenComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule, 
     ReactiveFormsModule,
+    RouterModule.forRoot(appRoutes)
   ],
-  providers: [UserService],
+  providers: [
+    UserService, 
+    ValidationMsgService,
+    ToasterService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

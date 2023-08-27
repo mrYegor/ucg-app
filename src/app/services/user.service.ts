@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { User } from '../shared/users.interface';
+import { Actions } from '../shared/action.enums';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +12,7 @@ export class UserService {
   constructor() { }
 
   //set dummy data
-
-  public addDummyUsers() {
+  public addDummyUsers(): void {
     const users = [
       {
         username: '__jn__',
@@ -43,15 +44,53 @@ export class UserService {
   }
 
   public getUsers(): User[] {
-    const users = localStorage.getItem('users');
+    const users = localStorage.getItem(this.title);
     return JSON.parse(users!);
   }
 
-  //create-update
+  public getUserByEmail(email: string, form: any): void {
+    const users = JSON.parse(localStorage.getItem(this.title)!);
 
-  public createUpdateUser(newUser: User): void {
-    const users = JSON.parse(localStorage.getItem('users')!);
-    users.push(newUser);
+    const selectedUser = users.find((u: User) => u.email === email);
+
+    form.patchValue({
+      username: selectedUser.username,
+      first_name: selectedUser.first_name,
+      last_name: selectedUser.last_name,
+      email: selectedUser.email,
+      password: selectedUser.password,
+      repeat_password: selectedUser.repeat_password,
+      user_type: selectedUser.user_type
+    })
+  }
+
+  //create-update
+  public newUserValue(
+    form: FormGroup<any>, 
+    action: string,
+    currentEmail?: string
+  ): void {
+    const users = JSON.parse(localStorage.getItem(this.title)!);
+    const updatedUserValue = form.value;
+    delete updatedUserValue.repeat_password;
+
+    if (action === Actions.create_user) {
+      users.push(updatedUserValue);
+    }
+    
+    if (action === Actions.view_user) {
+      const i = users.findIndex((u: User) => u.email === currentEmail);
+      Object.assign(users[i], updatedUserValue);
+    }
+
+    localStorage.setItem(this.title, JSON.stringify(users));
+  }
+
+  //delete user
+  public deleteCurrentUser(email: string): void {
+    const users = JSON.parse(localStorage.getItem(this.title)!);
+    const i = users.findIndex((u: User) => u.email === email);
+    users.splice(i, 1)
     localStorage.setItem(this.title, JSON.stringify(users));
   }
 }

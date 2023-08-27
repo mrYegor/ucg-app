@@ -3,12 +3,15 @@
         class="users-list"
         (onCreateUser)="onCreate($event)"
         (onViewUserData)="onView($event)"
+        [updatedUsers]="updatedUsers"
     ></app-users-list>
     <app-user-form 
         *ngIf="isFormVisible"
         class="user-form"
         [currentUserAction]="userAction"
-        [isFormVisisble]="isFormVisible"
         (onChangeVisisbility)="toggleFormView($event)"
+        (onUsersUpdate)="updateUsersList($event)"
+        (showToast)="showToaster($event)"
     ></app-user-form>
+    <app-toaster-container></app-toaster-container>
 </div>

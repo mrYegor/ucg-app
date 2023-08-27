@@ -12,12 +12,17 @@ export class UsersListComponent implements OnInit {
   constructor(private userService: UserService) {}
 
   @Input() tableHeader: string[];
+  @Input() updatedUsers: User[];
   @Output() onCreateUser = new EventEmitter<UserAction>();
   @Output() onViewUserData = new EventEmitter<UserAction>();
 
   ngOnInit() {
     this.userService.addDummyUsers();
     this.users = this.userService.getUsers()
+  }
+
+  ngOnChanges() {
+    this.users = this.updatedUsers;
   }
 
   titles = [

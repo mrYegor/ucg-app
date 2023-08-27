@@ -1,7 +1,8 @@
 <div class="container">
-    <form>
+    <form [formGroup]="form" (ngSubmit)="submit()">
         <legend>
-            <fieldset *ngIf="currentUserAction.action === 'create'; else UpdateBlock">
+            <fieldset 
+                *ngIf="currentUserAction.action === 'create'; else UpdateBlock">
                 Create new user
             </fieldset>
             <ng-template #UpdateBlock>
@@ -13,43 +14,52 @@
         </legend>
         <div class="form-control">
             <label>Username</label>
-            <input type="text">
-            <div class="validation"></div>
+            <input type="text" formControlName="username" appFormControlValidationMsg validationMsgId="username">
         </div>
         <div class="form-control">
             <label>First name</label>
-            <input type="text">
-            <div class="validation"></div>
+            <input type="text" formControlName="first_name" appFormControlValidationMsg validationMsgId="first_name">
         </div>
         <div class="form-control">
             <label>Last name</label>
-            <input type="text">
-            <div class="validation"></div>
+            <input type="text" formControlName="last_name" appFormControlValidationMsg validationMsgId="last_name">
         </div>
         <div class="form-control">
             <label>Email</label>
-            <input type="text">
-            <div class="validation"></div>
+            <input type="text" formControlName="email" appFormControlValidationMsg validationMsgId="email">
         </div>
         <div class="form-control">
             <label>Role</label>
-            <select>
+            <select formControlName="user_type" appFormControlValidationMsg validationMsgId="user_type">
                 <option selected value="0"></option>
                 <option value="Admin">Admin</option>
                 <option value="Driver">Driver</option>
               </select>
-            <div class="validation"></div>
         </div>
         <div class="form-control">
             <label>Password</label>
-            <input type="password" >
-            <div class="validation"></div>
+            <input type="password" formControlName="password" appFormControlValidationMsg validationMsgId="password">
         </div>
         <div class="form-control">
             <label>Repeat password</label>
-            <input type="password">
-            <div class="validation"></div>
+            <input type="password" formControlName="repeat_password" appFormControlValidationMsg validationMsgId="repeat_password">
         </div>
-        <app-action-buttons [currentAction]="currentUserAction" ></app-action-buttons> 
+        <div
+            class="action-buttons"
+            [ngSwitch]="currentUserAction.action">
+            <div 
+                *ngSwitchCase="actions.create_user"
+                class="action-buttons {{actions.create_user}}"
+            >
+                <input type="submit" value="Create">
+            </div>
+            <div 
+                *ngSwitchCase="actions.view_user"
+                class="action-buttons {{actions.view_user}}"
+            >
+                <input type="button" value="Delete" (click)="deleteUser()">
+                <input type="submit" value="Save">
+            </div>
+        </div>
     </form>
 </div>
